@@ -19,8 +19,7 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
     @PersistenceContext(unitName = "gestorPU")
     private EntityManager entityManager;
    
-    public AsignaturaDaoImpl() {
-    }
+    
     
     @Override
     public void crearAsignatura(Asignatura a){
@@ -31,14 +30,14 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
         
         
     }
-    @Override
+    
     public void actualizarAsignatura(Asignatura a){
     Asignatura aux=entityManager.getReference(Asignatura.class, a.getAsignaturaPK());
         entityManager.merge(a);
         
     }
     
-    @Override
+   @Override
     public List<Asignatura> listarAsignaturas(){
         
         return entityManager.createQuery("select a from Asignatura a").getResultList();
