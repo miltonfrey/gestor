@@ -24,7 +24,7 @@ import javax.persistence.PersistenceContext;
 @RequestScoped
 public class EquivalenciaDaoImpl implements EquivalenciaDao{
 
-    @PersistenceContext(unitName = "pruebaHibernate2PU")
+    @PersistenceContext(unitName = "gestorPU")
     private EntityManager entityManager;
     
     public EquivalenciaDaoImpl() {

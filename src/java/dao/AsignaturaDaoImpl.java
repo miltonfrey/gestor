@@ -16,7 +16,7 @@ import javax.persistence.Query;
 @Named(value = "asignaturaDaoImpl")
 @RequestScoped
 public class AsignaturaDaoImpl implements AsignaturaDao{
-    @PersistenceContext(unitName = "pruebaHibernate2PU")
+    @PersistenceContext(unitName = "gestorPU")
     private EntityManager entityManager;
    
     public AsignaturaDaoImpl() {

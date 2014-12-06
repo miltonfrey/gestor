@@ -17,7 +17,7 @@ import javax.persistence.Query;
 public class MovilidadDaoImpl implements MovilidadDao{
 
     
-   @PersistenceContext(unitName = "pruebaHibernate2PU")
+   @PersistenceContext(unitName = "gestorPU")
     private EntityManager entityManager;
     
     public MovilidadDaoImpl() {

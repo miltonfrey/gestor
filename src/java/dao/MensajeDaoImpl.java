@@ -18,7 +18,7 @@ import javax.persistence.Query;
 @RequestScoped
 public class MensajeDaoImpl implements MensajeDao{
 
-    @PersistenceContext(unitName = "pruebaHibernate2PU")
+    @PersistenceContext(unitName = "gestorPU")
     private EntityManager entityManager;
    
     public MensajeDaoImpl() {

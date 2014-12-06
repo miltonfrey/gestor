@@ -20,7 +20,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UtilidadServiceImpl implements UtilidadService {
 
-    @PersistenceContext(unitName = "pruebaHibernate2PU")
+    @PersistenceContext(unitName = "gestorPU")
     private EntityManager entityManager;
     
     @Override

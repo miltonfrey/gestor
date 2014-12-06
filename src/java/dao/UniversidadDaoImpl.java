@@ -24,7 +24,7 @@ import javax.persistence.Query;
 @RequestScoped
 public class UniversidadDaoImpl implements UniversidadDao{
 
-     @PersistenceContext(unitName = "pruebaHibernate2PU")
+     @PersistenceContext(unitName = "gestorPU")
     private EntityManager entityManager;
     
       public UniversidadDaoImpl() {

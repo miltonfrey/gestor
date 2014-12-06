@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 public class UsuarioDaoImpl implements UsuarioDao{
 
     
-    @PersistenceContext(unitName = "pruebaHibernate2PU")
+    @PersistenceContext(unitName = "gestorPU")
     private EntityManager entityManager;
    
     public UsuarioDaoImpl() {
