@@ -9,7 +9,7 @@
       
     <h:head>
         <title>crear universidad</title>
-        <h:outputScript library="js" name="funciones.js"/>
+        
         <h:outputStylesheet library="css" name="estilos.css"/>
         
     </h:head>
@@ -28,7 +28,7 @@
                                  required="true"
                                  requiredMessage="el campo pais está vacío"
                                  >
-                        <p:ajax event="change" listener="#{crearUniversidadController.onChangePais}" update=":formTabla:"/>
+                        <p:ajax event="change" listener="#{crearUniversidadController.onChangePais}" update=":formTabla :formUniversidad" oncomplete="PF('universidadTabla').filter();" />
                                  
                     
                     <f:selectItem itemLabel="elige un pais" noSelectionOption="true"/>
@@ -66,18 +66,21 @@
                  <p:inputTextarea value="#{crearUniversidadController.info}"/>
                 
                  <p:commandButton value="crear universidad" action="#{crearUniversidadController.creaUniversidad}" update=":formTabla :formUniversidad :formDetalles" 
-                                  oncomplete="PF('universidadTable').unselectAllRows();"/>
+                                  oncomplete="PF('universidadTabla').filter();" />
+                                   
              </h:panelGrid>
           </h:form>
-        <p:separator/>
+        
                  <br/><br/> 
                  
                  <h:form id="formTabla">
-                     <p:dataTable id="universidadTable" var="universidad" value="#{crearUniversidadController.listaUniversidades}"  emptyMessage="No hay universidades" 
-                             widgetVar="universidadTable" paginator="true" rows="10"
+                     <p:outputPanel>
+                       <p:dataTable id="universidadTable" var="universidad" value="#{crearUniversidadController.listaUniversidades}"  emptyMessage="No hay universidades" 
+                             widgetVar="universidadTabla" paginator="true" rows="10"
                              selection="#{crearUniversidadController.selectedUniversidades}"
                              rowKey="#{universidad.nombre}"
                              styleClass="borderless"
+                             filteredValue="#{crearUniversidadController.filteredUniversidades}"
                              >
                                         
                          <f:facet name="header">Lista de Universidades de #{crearUniversidadController.paisStr}</f:facet>
@@ -87,7 +90,7 @@
                             
                            </p:column>
                          
-                         <p:column headerText="nombre" sortBy="#{universidad.nombre}" filterBy="#{universidad.nombre}">
+                         <p:column headerText="nombre" sortBy="#{universidad.nombre}" filterBy="#{universidad.nombre}" filterMatchMode="startsWith">
                         
                             
                               <h:outputText value="#{universidad.nombre}"/>
@@ -116,15 +119,17 @@
                          <p:column selectionMode="multiple" styleClass="multiple"/>
                                
                                <f:facet name="footer">
-                                <p:commandButton id="b1" onclick= "if (! confirm('¿seguro que quieres borrar?'))return false"
-                                                 value="eliminar" action="#{crearUniversidadController.eliminaUniversidadLista}" process=":formTabla"  icon="edit_icon" update=":formTabla :formUniversidad:msgs :formDetalles"
-                                                 oncomplete="PF('universidadTable').filter();"
-                                                 />
+                                   <p:commandButton  id="b1" onclick="if (! confirm('¿seguro que quieres eliminar?')) return false"
+                                                 value="eliminar" action="#{crearUniversidadController.eliminaUniversidadLista}" process=":formTabla"  icon="edit_icon" update=":formTabla :formUniversidad :formDetalles"
+                                                 oncomplete="PF('universidadTabla').filter();" />
+                                                 
                                
                                </f:facet>
                 
                        </p:dataTable>
                              
+                     </p:outputPanel>    
+                         
                   </h:form>
             
             <br/><br/>

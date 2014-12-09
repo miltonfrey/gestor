@@ -321,11 +321,18 @@ public class CrearAsignaturaController implements Serializable{
             asignaturaService.actualizarAsignatura(SelectedAsignatura);
            setListaAsignaturas( asignaturaService.listarAsignaturasPorUniversidad(universidadStr));
         }catch(RuntimeException ex){
-            try{
+           /* try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/crearAsignatura.xhtml");
         }catch(IOException ex2){
             
-        }
+        }*/beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
+        checkDetalles=false;
+        checkUniversidadStr=false;
+        checkTabla=false;
+        checkPaisStr=false;
+        paisStr="";
+        universidadStr="";
+        return null;
         }
             checkDetalles=false;
             beanUtilidades.creaMensaje("Edición correcta", FacesMessage.SEVERITY_INFO);
@@ -354,7 +361,12 @@ public class CrearAsignaturaController implements Serializable{
                 asignaturaService.eliminaAsignatura(a);
             }catch(RuntimeException ex){
                  beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
-                 return "crearAsignatura.xhtml";
+                 checkDetalles=false;
+                 checkTabla=false;
+                 checkUniversidadStr=false;
+                 checkPaisStr=false;
+                 paisStr="";
+                 return null;
                  
             }
         }

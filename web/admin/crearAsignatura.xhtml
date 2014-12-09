@@ -199,7 +199,7 @@
                     <f:selectItem itemLabel="primavera" itemValue="primavera"/>
                 </p:selectOneMenu>
                 
-                <p:commandButton process=":formDetalles:" id="actualizaBtn" value="editar" action="#{crearAsignaturaController.editar()}" update=":formDetalles: :formTabla:"
+                <p:commandButton process=":formDetalles:" id="actualizaBtn" value="editar" action="#{crearAsignaturaController.editar()}" update=":formDetalles: :formTabla: :formUniversidad :formAsignatura"
                                   />
                 <p:commandButton id="cancelBtn" value="cerrar" action="#{crearAsignaturaController.cerrar}" update=":formDetalles" process="cancelBtn"
                                   onclick=""/>
