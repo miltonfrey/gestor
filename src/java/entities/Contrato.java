@@ -9,8 +9,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "contrato")
@@ -55,10 +57,10 @@ public class Contrato implements Serializable {
     @JoinTable(name = "contrato_equivalencia", joinColumns = {
         @JoinColumn(name = "idContrato", referencedColumnName = "idContrato")}, inverseJoinColumns = {
         @JoinColumn(name = "idEquivalencia", referencedColumnName = "idequivalencia")})
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
     private Set<Equivalencia> equivalenciaSet;
     @JoinColumn(name = "idMovilidad", referencedColumnName = "codMovilidad")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Movilidad idMovilidad;
 
     public Contrato() {
@@ -131,7 +133,7 @@ public class Contrato implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Contrato[ idContrato=" + idContrato + " ]";
+        return "pojos.Contrato[ idContrato=" + idContrato + " ]";
     }
     
 }

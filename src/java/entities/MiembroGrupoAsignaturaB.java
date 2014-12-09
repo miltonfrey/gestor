@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "miembro_grupo_asignatura_b")
@@ -38,12 +39,12 @@ public class MiembroGrupoAsignaturaB implements Serializable {
     @Column(name = "idmiembro_grupo_asignatura_b")
     private Integer idmiembroGrupoAsignaturaB;
     @JoinColumn(name = "idEquivalencia", referencedColumnName = "idequivalencia")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Equivalencia idEquivalencia;
     @JoinColumns({
         @JoinColumn(name = "codAsignatura", referencedColumnName = "codAsignatura"),
         @JoinColumn(name = "nombreUniversidad", referencedColumnName = "nombreUniversidad")})
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Asignatura asignatura;
 
     public MiembroGrupoAsignaturaB() {
@@ -77,29 +78,11 @@ public class MiembroGrupoAsignaturaB implements Serializable {
         this.asignatura = asignatura;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idmiembroGrupoAsignaturaB != null ? idmiembroGrupoAsignaturaB.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof MiembroGrupoAsignaturaB)) {
-            return false;
-        }
-        MiembroGrupoAsignaturaB other = (MiembroGrupoAsignaturaB) object;
-        if ((this.idmiembroGrupoAsignaturaB == null && other.idmiembroGrupoAsignaturaB != null) || (this.idmiembroGrupoAsignaturaB != null && !this.idmiembroGrupoAsignaturaB.equals(other.idmiembroGrupoAsignaturaB))) {
-            return false;
-        }
-        return true;
-    }
+   
 
     @Override
     public String toString() {
-        return "entities.MiembroGrupoAsignaturaB[ idmiembroGrupoAsignaturaB=" + idmiembroGrupoAsignaturaB + " ]";
+        return "pojos.MiembroGrupoAsignaturaB[ idmiembroGrupoAsignaturaB=" + idmiembroGrupoAsignaturaB + " ]";
     }
     
 }

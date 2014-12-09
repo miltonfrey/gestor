@@ -8,8 +8,10 @@ package entities;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "equivalencia")
@@ -43,11 +45,11 @@ public class Equivalencia implements Serializable {
     @Size(max = 2)
     @Column(name = "visible")
     private String visible;
-    @ManyToMany(mappedBy = "equivalenciaSet")
+    @ManyToMany(mappedBy = "equivalenciaSet", fetch = FetchType.LAZY)
     private Set<Contrato> contratoSet;
-    @OneToMany(mappedBy = "idEquivalencia")
+    @OneToMany(mappedBy = "idEquivalencia", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<MiembroGrupoAsignaturaB> miembroGrupoAsignaturaBSet;
-    @OneToMany(mappedBy = "idEquivalencia")
+    @OneToMany(mappedBy = "idEquivalencia", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<MiembroGrupoAsignaturaA> miembroGrupoAsignaturaASet;
 
     public Equivalencia() {
@@ -122,7 +124,7 @@ public class Equivalencia implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Equivalencia[ idequivalencia=" + idequivalencia + " ]";
+        return "pojos.Equivalencia[ idequivalencia=" + idequivalencia + " ]";
     }
     
 }

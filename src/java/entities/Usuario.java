@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "usuario")
@@ -72,11 +73,11 @@ public class Usuario implements Serializable {
     @Size(max = 45)
     @Column(name = "apellido2")
     private String apellido2;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "origen")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "origen", fetch = FetchType.LAZY)
     private Set<Mensaje> mensajeSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "destino")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "destino", fetch = FetchType.LAZY)
     private Set<Mensaje> mensajeSet1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "loginUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "loginUsuario", fetch = FetchType.LAZY)
     private Set<Movilidad> movilidadSet;
 
     public Usuario() {
@@ -200,7 +201,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Usuario[ login=" + login + " ]";
+        return "pojos.Usuario[ login=" + login + " ]";
     }
     
 }

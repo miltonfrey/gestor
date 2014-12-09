@@ -9,8 +9,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "movilidad")
@@ -62,16 +64,16 @@ public class Movilidad implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(mappedBy = "idMovilidad")
+    @OneToMany(mappedBy = "idMovilidad", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Contrato> contratoSet;
     @JoinColumn(name = "loginUsuario", referencedColumnName = "login")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Usuario loginUsuario;
     @JoinColumn(name = "nombreUniversidad", referencedColumnName = "nombre")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Universidad nombreUniversidad;
     @JoinColumn(name = "cursoAcademico", referencedColumnName = "cursoAcademico")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cursoacademico cursoAcademico;
 
     public Movilidad() {
@@ -175,7 +177,7 @@ public class Movilidad implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Movilidad[ codMovilidad=" + codMovilidad + " ]";
+        return "pojos.Movilidad[ codMovilidad=" + codMovilidad + " ]";
     }
     
 }

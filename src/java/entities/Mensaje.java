@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "mensaje")
@@ -77,10 +78,10 @@ public class Mensaje implements Serializable {
     @Column(name = "eliminadoDestino")
     private String eliminadoDestino;
     @JoinColumn(name = "origen", referencedColumnName = "login")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Usuario origen;
     @JoinColumn(name = "destino", referencedColumnName = "login")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Usuario destino;
 
     public Mensaje() {
@@ -193,7 +194,7 @@ public class Mensaje implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Mensaje[ idmensaje=" + idmensaje + " ]";
+        return "pojos.Mensaje[ idmensaje=" + idmensaje + " ]";
     }
     
 }

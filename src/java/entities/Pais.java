@@ -8,8 +8,10 @@ package entities;
 import java.io.Serializable;
 import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "pais")
@@ -38,7 +40,7 @@ public class Pais implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(mappedBy = "pais")
+    @OneToMany(mappedBy = "pais", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private Set<Universidad> universidadSet;
 
     public Pais() {
@@ -87,7 +89,7 @@ public class Pais implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Pais[ nombre=" + nombre + " ]";
+        return "pojos.Pais[ nombre=" + nombre + " ]";
     }
     
 }

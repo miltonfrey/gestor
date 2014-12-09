@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "asignatura")
@@ -63,12 +64,12 @@ public class Asignatura implements Serializable {
     @Size(max = 45)
     @Column(name = "titulacion")
     private String titulacion;
-    @OneToMany(mappedBy = "asignatura")
+    @OneToMany(mappedBy = "asignatura", fetch = FetchType.LAZY)
     private Set<MiembroGrupoAsignaturaB> miembroGrupoAsignaturaBSet;
     @JoinColumn(name = "nombreUniversidad", referencedColumnName = "nombre", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Universidad universidad;
-    @OneToMany(mappedBy = "asignatura")
+    @OneToMany(mappedBy = "asignatura", fetch = FetchType.LAZY)
     private Set<MiembroGrupoAsignaturaA> miembroGrupoAsignaturaASet;
 
     public Asignatura() {
@@ -194,7 +195,7 @@ public class Asignatura implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Asignatura[ asignaturaPK=" + asignaturaPK + " ]";
+        return "pojos.Asignatura[ asignaturaPK=" + asignaturaPK + " ]";
     }
     
 }

@@ -353,7 +353,7 @@ public class CrearAsignaturaController implements Serializable{
             try{
                 asignaturaService.eliminaAsignatura(a);
             }catch(RuntimeException ex){
-                 beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_INFO);
+                 beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
                  return "crearAsignatura.xhtml";
                  
             }

@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "cursoacademico")
@@ -38,7 +39,7 @@ public class Cursoacademico implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "cursoAcademico")
     private String cursoAcademico;
-    @OneToMany(mappedBy = "cursoAcademico")
+    @OneToMany(mappedBy = "cursoAcademico", fetch = FetchType.LAZY)
     private Set<Movilidad> movilidadSet;
 
     public Cursoacademico() {
@@ -87,7 +88,7 @@ public class Cursoacademico implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Cursoacademico[ cursoAcademico=" + cursoAcademico + " ]";
+        return "pojos.Cursoacademico[ cursoAcademico=" + cursoAcademico + " ]";
     }
     
 }

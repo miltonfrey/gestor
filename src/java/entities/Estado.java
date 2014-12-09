@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "estado")
@@ -73,7 +73,7 @@ public class Estado implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Estado[ estado=" + estado + " ]";
+        return "pojos.Estado[ estado=" + estado + " ]";
     }
     
 }

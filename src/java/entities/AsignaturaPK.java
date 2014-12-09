@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Embeddable
 public class AsignaturaPK implements Serializable {
@@ -78,7 +78,7 @@ public class AsignaturaPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.AsignaturaPK[ codAsignatura=" + codAsignatura + ", nombreUniversidad=" + nombreUniversidad + " ]";
+        return "pojos.AsignaturaPK[ codAsignatura=" + codAsignatura + ", nombreUniversidad=" + nombreUniversidad + " ]";
     }
     
 }

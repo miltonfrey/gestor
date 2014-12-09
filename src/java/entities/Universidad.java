@@ -11,6 +11,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -26,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author cba
+ * @author abc
  */
 @Entity
 @Table(name = "universidad")
@@ -57,11 +58,11 @@ public class Universidad implements Serializable {
     @Column(name = "codUniversidad")
     private String codUniversidad;
     @JoinColumn(name = "pais", referencedColumnName = "nombre")
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Pais pais;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "universidad")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "universidad", fetch = FetchType.LAZY)
     private Set<Asignatura> asignaturaSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nombreUniversidad")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nombreUniversidad", fetch = FetchType.LAZY)
     private Set<Movilidad> movilidadSet;
 
     public Universidad() {
@@ -156,7 +157,7 @@ public class Universidad implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Universidad[ nombre=" + nombre + " ]";
+        return "pojos.Universidad[ nombre=" + nombre + " ]";
     }
     
 }
