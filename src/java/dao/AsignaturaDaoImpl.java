@@ -3,10 +3,12 @@ package dao;
 
 import entities.Asignatura;
 import entities.AsignaturaPK;
+import exceptions.UniversidadException;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -31,9 +33,14 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
         
     }
     
-    public void actualizarAsignatura(Asignatura a){
+    @Override
+    public void actualizarAsignatura(Asignatura a) throws UniversidadException{
+        try{
     Asignatura aux=entityManager.getReference(Asignatura.class, a.getAsignaturaPK());
         entityManager.merge(a);
+        }catch(EntityNotFoundException ex){
+            throw new UniversidadException(); 
+        }
         
     }
     

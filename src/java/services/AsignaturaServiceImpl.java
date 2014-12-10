@@ -7,9 +7,11 @@ package services;
 
 import dao.AsignaturaDao;
 import entities.Asignatura;
+import exceptions.UniversidadException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.EntityNotFoundException;
 
 
 /**
@@ -54,9 +56,11 @@ public class AsignaturaServiceImpl implements AsignaturaService{
     
     
     @Override
-    public void actualizarAsignatura(Asignatura a){
+    public void actualizarAsignatura(Asignatura a) throws UniversidadException{
+        
         
         asignaturaDao.actualizarAsignatura(a);
+       
     }
     
     @Override

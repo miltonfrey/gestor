@@ -6,17 +6,17 @@ import entities.AsignaturaPK;
 import entities.Pais;
 import entities.Universidad;
 import exceptions.UniversidadException;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityNotFoundException;
 
 import services.AsignaturaService;
 import services.UniversidadService;
@@ -320,12 +320,12 @@ public class CrearAsignaturaController implements Serializable{
         try{
             asignaturaService.actualizarAsignatura(SelectedAsignatura);
            setListaAsignaturas( asignaturaService.listarAsignaturasPorUniversidad(universidadStr));
-        }catch(RuntimeException ex){
+        }catch(UniversidadException ex){
            /* try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/crearAsignatura.xhtml");
         }catch(IOException ex2){
             
-        }*/beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
+        }*/beanUtilidades.creaMensaje("Se ha producido un error", FacesMessage.SEVERITY_ERROR);
         checkDetalles=false;
         checkUniversidadStr=false;
         checkTabla=false;
