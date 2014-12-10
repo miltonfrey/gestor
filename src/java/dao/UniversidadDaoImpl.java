@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -49,9 +50,11 @@ public class UniversidadDaoImpl implements UniversidadDao{
     
     @Override
     public Pais findPais(String pais){
-        
+        try{
         return (Pais) entityManager.createQuery("select p from Pais p where p.nombre=:pais order by p.nombre asc").setParameter("pais", pais).getSingleResult();
-       
+        }catch(NoResultException ex){
+            return null;
+        }
     }
     
     
@@ -126,7 +129,7 @@ public class UniversidadDaoImpl implements UniversidadDao{
      @Override
      public void crearCursoAcademico(Cursoacademico c){
          
-         entityManager.merge(c);
+         entityManager.persist(c);
          
      }
      
@@ -146,9 +149,14 @@ public class UniversidadDaoImpl implements UniversidadDao{
     @Override
     public Universidad findUniversidad(String universidad){
         
+        try{
         Query q=entityManager.createQuery("select u from Universidad u where u.nombre=:universidad");
         q.setParameter("universidad", universidad);
         return (Universidad)q.getSingleResult();
+        }catch(NoResultException ex){
+            
+            return null;
+        }
         
     }
 }

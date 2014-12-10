@@ -9,6 +9,7 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -34,13 +35,10 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
     }
     
     @Override
-    public void actualizarAsignatura(Asignatura a) throws UniversidadException{
-        try{
+    public void actualizarAsignatura(Asignatura a) {
+        
     Asignatura aux=entityManager.getReference(Asignatura.class, a.getAsignaturaPK());
         entityManager.merge(a);
-        }catch(EntityNotFoundException ex){
-            throw new UniversidadException(); 
-        }
         
     }
     
@@ -75,9 +73,13 @@ public class AsignaturaDaoImpl implements AsignaturaDao{
     
     public Asignatura find(AsignaturaPK id){
         
+        try{
         return(Asignatura)entityManager.createQuery("select a from Asignatura a where a.asignaturaPK=:id").setParameter("id", id).getSingleResult();
+    }catch(NoResultException ex){
+        return null;
     }
     
+}
 }
 
     

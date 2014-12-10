@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -120,7 +121,7 @@ public class MisMovilidadesController implements Serializable{
            
             try{
             movilidadService.eliminarMovilidad(selectedMovilidad);
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                     beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
                     return "verMisMovilidades.xhtml";
                     }
@@ -162,7 +163,7 @@ public class MisMovilidadesController implements Serializable{
                 if(selectedMovilidad.getEstado().equalsIgnoreCase("rechazada")){
                     try{
                 movilidadService.eliminarMovilidad(selectedMovilidad);    
-                    }catch(RuntimeException ex){
+                    }catch(EJBException ex){
                         beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
                         return "verMisMovilidades.xhtml";
                     }

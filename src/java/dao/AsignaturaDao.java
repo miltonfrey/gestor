@@ -13,7 +13,7 @@ public interface AsignaturaDao{
     public List<Asignatura> listarAsignaturas();
     public List<Asignatura> listarAsignaturasPorUniversidad(String codUniversidad);
     public void eliminaAsignatura(Asignatura a);
-    public void actualizarAsignatura(Asignatura a) throws UniversidadException;
+    public void actualizarAsignatura(Asignatura a); 
     public List<Asignatura> listarPorCriterio();
     
    

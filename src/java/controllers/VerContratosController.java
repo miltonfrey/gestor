@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -137,7 +138,7 @@ public class VerContratosController implements Serializable{
         
             try{
             c=equivalenciaService.findContrato(c.getIdContrato());
-            }catch(ContratoNotFoundException|RuntimeException ex){
+            }catch(ContratoNotFoundException|EJBException ex){
              setListaContratos(equivalenciaService.listaContratos(selectedMovilidad));
               beanUtilidades.creaMensaje("contrato no encontrado", FacesMessage.SEVERITY_ERROR);
              return null;
@@ -148,7 +149,7 @@ public class VerContratosController implements Serializable{
             try{
             //equivalenciaService.modificaContrato(c);
             equivalenciaService.eliminaContrato(c);
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                 
             }
             
@@ -156,7 +157,7 @@ public class VerContratosController implements Serializable{
             
             try{
             equivalenciaService.eliminarEquivalencia(e);
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                 
             }
         }

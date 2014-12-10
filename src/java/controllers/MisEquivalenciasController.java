@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -130,7 +131,7 @@ public class MisEquivalenciasController implements Serializable{
         context.getSessionMap().remove("contrato");
         try{
         c=equivalenciaService.findContrato(selectedContrato.getIdContrato());
-        }catch(ContratoNotFoundException|RuntimeException ex){
+        }catch(ContratoNotFoundException|EJBException ex){
              try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
             }catch(IOException ex2){
@@ -431,7 +432,7 @@ public class MisEquivalenciasController implements Serializable{
         
         try{
         equivalenciaService.confirmarContrato(listaAuxEquivalencias, c);
-        }catch(ContratoNotFoundException|RuntimeException ex){
+        }catch(ContratoNotFoundException|EJBException ex){
          
              try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
@@ -473,7 +474,7 @@ public class MisEquivalenciasController implements Serializable{
         ArrayList<Equivalencia>listaCopia=null;
          try{
         listaCopia=equivalenciaService.editarContrato(listaAuxEquivalencias, c);
-        }catch(ContratoNotFoundException|RuntimeException ex){
+        }catch(ContratoNotFoundException|EJBException ex){
          
              try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
@@ -486,7 +487,7 @@ public class MisEquivalenciasController implements Serializable{
         for(Equivalencia e:listaCopia){
             try{
                 equivalenciaService.eliminarEquivalencia(e);
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                 
             }
         }
@@ -530,7 +531,7 @@ public class MisEquivalenciasController implements Serializable{
         
          try{
          equivalenciaService.crearContratoDesdeAceptado(listaAuxEquivalencias, c, cNuevo);
-        }catch(ContratoNotFoundException|EquivalenciaException|RuntimeException ex){
+        }catch(ContratoNotFoundException|EquivalenciaException|EJBException ex){
          
              try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");

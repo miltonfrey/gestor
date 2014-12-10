@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -218,7 +219,7 @@ public class MovilidadesController implements Serializable{
         for(Movilidad m:selectedMovilidades){
             try{
         movilidadService.eliminarMovilidad(m);
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                 beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
                 return "verMovilidades.xhtml";
             }

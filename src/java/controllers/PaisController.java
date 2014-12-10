@@ -75,7 +75,7 @@ public class PaisController implements Serializable{
       
       try{
       universidadService.insertarPais(paisStr);
-      }catch(RuntimeException ex){
+      }catch(javax.ejb.EJBException ex){
           
           beanUtilidades.creaMensaje("Ya existe ese país", FacesMessage.SEVERITY_ERROR);
           return null;

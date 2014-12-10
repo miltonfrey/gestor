@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -146,7 +147,7 @@ public class VerMisContratosController implements Serializable{
              selectedContrato.setEquivalenciaSet(null);
            //equivalenciaService.modificaContrato(selectedContrato);
            equivalenciaService.eliminaContrato(selectedContrato);
-           }catch(ContratoNotFoundException|RuntimeException ex){
+           }catch(ContratoNotFoundException|EJBException ex){
                cerrarContratos();
                return null;
            } 
@@ -154,7 +155,7 @@ public class VerMisContratosController implements Serializable{
               
                 try{
                 equivalenciaService.eliminarEquivalencia(e);
-                }catch(RuntimeException ex){
+                }catch(EJBException ex){
                     
                 }
             }

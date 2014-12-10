@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -101,7 +102,7 @@ public class EquivalenciasController implements Serializable{
            context.getSessionMap().remove("movilidad");
            try{
            selectedContrato=equivalenciaService.findContrato(selectedContrato.getIdContrato());
-           }catch(ContratoNotFoundException|RuntimeException ex){
+           }catch(ContratoNotFoundException|EJBException ex){
                try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -287,7 +288,7 @@ public class EquivalenciasController implements Serializable{
                 try{
                     
                 equivalenciaService.actualizarEquivalencia(e.getEquivalencia());
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                 try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -319,7 +320,7 @@ public class EquivalenciasController implements Serializable{
                  try{
                      
                 equivalenciaService.actualizarEquivalencia(e);
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                  try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -347,7 +348,7 @@ public class EquivalenciasController implements Serializable{
                  try{
                     
                 equivalenciaService.actualizarEquivalencia(e.getEquivalencia());
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                  try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -374,7 +375,7 @@ public class EquivalenciasController implements Serializable{
             try{
                
                 equivalenciaService.actualizarEquivalencia(e);
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                  try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){
@@ -404,7 +405,7 @@ public class EquivalenciasController implements Serializable{
             try{
                
             equivalenciaService.modificaContrato(selectedContrato);
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                 try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
             }catch(IOException ex2){

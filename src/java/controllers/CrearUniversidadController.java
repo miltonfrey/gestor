@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 
@@ -230,14 +231,11 @@ public class CrearUniversidadController implements Serializable{
             
             universidadService.insertarUniversidad(u);
             
-        }catch(RuntimeException ex){
+        }catch(EJBException ex){
             beanUtilidades.creaMensaje("ya existe esa universidad", FacesMessage.SEVERITY_ERROR);
             return null;
         }
-        catch(Exception ex){
-            beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_INFO);
-            return "crearUniversidad.xhtml";
-        }
+        
         
         beanUtilidades.creaMensaje("universidad creada", FacesMessage.SEVERITY_INFO);
         nombre="";
@@ -272,7 +270,7 @@ public class CrearUniversidadController implements Serializable{
                
                 try{
                     universidadService.delete(u);
-                }catch(RuntimeException ex){
+                }catch(EJBException ex){
                    
                    beanUtilidades.creaMensaje("Error eliminando", FacesMessage.SEVERITY_ERROR); 
                    
@@ -298,7 +296,7 @@ public class CrearUniversidadController implements Serializable{
         try{
         universidadService.actualizar(selectedUniversidad);
         listaUniversidades=universidadService.listarPorPais(paisStr);
-        }catch(RuntimeException ex){
+        }catch(EJBException ex){
            
             beanUtilidades.creaMensaje("error editando ", FacesMessage.SEVERITY_ERROR);
             checkDetalles=false;

@@ -12,11 +12,12 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
+
 import javax.faces.application.FacesMessage;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityNotFoundException;
+
 
 import services.AsignaturaService;
 import services.UniversidadService;
@@ -245,6 +246,14 @@ public class CrearAsignaturaController implements Serializable{
        checkDetalles=false;
        checkUniversidadStr=false;
        checkTabla=false;
+       codAsignatura=null;
+      nombreAsignatura="";
+     creditosAsignatura=null;
+      periodoAsignatura="";
+      infoAsignatura="";
+     webAsignatura="";
+      facultadAsignatura="";
+      titulacionAsignatura="";
        
        
    }
@@ -256,7 +265,14 @@ public class CrearAsignaturaController implements Serializable{
         setListaAsignaturas( asignaturaService.listarAsignaturasPorUniversidad(universidadStr));
         
        checkDetalles=false;
-       
+       codAsignatura=null;
+      nombreAsignatura="";
+     creditosAsignatura=null;
+      periodoAsignatura="";
+      infoAsignatura="";
+     webAsignatura="";
+      facultadAsignatura="";
+      titulacionAsignatura="";
         
     }
     
@@ -266,7 +282,14 @@ public class CrearAsignaturaController implements Serializable{
         uni=universidadService.findUniversidad(universidadStr);
         }catch(UniversidadException ex){
             beanUtilidades.creaMensaje("no existe la universidad", FacesMessage.SEVERITY_ERROR);
-            return "crearAsignatura.xhtml";
+            //checkDetalles=false;
+            //checkPaisStr=false;
+            //checkTabla=false;
+            //checkUniversidadStr=false;
+            universidadStr="";
+            setListaAsignaturas( asignaturaService.listarAsignaturasPorUniversidad(universidadStr));
+            
+            return null;
         }
             
             
@@ -286,7 +309,7 @@ public class CrearAsignaturaController implements Serializable{
         try{
             
             asignaturaService.crearAsignatura(a);
-        }catch(RuntimeException ex){
+        }catch(EJBException ex){
             
             beanUtilidades.creaMensaje("La asignatura ya existe", FacesMessage.SEVERITY_ERROR);
             return null;
@@ -320,7 +343,7 @@ public class CrearAsignaturaController implements Serializable{
         try{
             asignaturaService.actualizarAsignatura(SelectedAsignatura);
            setListaAsignaturas( asignaturaService.listarAsignaturasPorUniversidad(universidadStr));
-        }catch(UniversidadException ex){
+        }catch(EJBException ex){
            /* try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/crearAsignatura.xhtml");
         }catch(IOException ex2){
@@ -359,7 +382,7 @@ public class CrearAsignaturaController implements Serializable{
         for (Asignatura a:selectedAsignaturas){
             try{
                 asignaturaService.eliminaAsignatura(a);
-            }catch(RuntimeException ex){
+            }catch(EJBException ex){
                  beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
                  checkDetalles=false;
                  checkTabla=false;
