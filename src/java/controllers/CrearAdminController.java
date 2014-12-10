@@ -80,7 +80,7 @@ public class CrearAdminController implements Serializable{
         
         Short s=2;
        
-        Usuario u=new Usuario(login,password,s,"tutor","tutor","tutor");
+        Usuario u=new Usuario(login,usuarioService.md5Password(password),s,"tutor","tutor","tutor");
         try{
         usuarioService.insertarUsuario(u);
     }catch(Exception ex){
