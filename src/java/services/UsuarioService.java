@@ -19,7 +19,7 @@ public interface UsuarioService {
     public void actualizar(Usuario u);
     public String md5Password(String password);
     public void autenticarUsuario(String password,Usuario u) throws PasswordIncorrectoException;
-    public void autenticarAdmin(String password,Usuario u) throws PasswordIncorrectoException;
+    
     public void enviarEmail(String login,String password) throws EmailException;
     public String generarPassword();
 }

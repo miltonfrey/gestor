@@ -40,10 +40,7 @@ public class UsuarioServiceImpl implements UsuarioService{
     
     @Override
     public void delete(Usuario u) throws UsuarioNotFoundException{
-        
-        
-        
-        
+       
         usuarioDao.delete(u);
        
     }
@@ -80,7 +77,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         
         password=md5Password(password);
             String pass=u.getPassword();
-            if((pass.equals(password)==false)||u.getTipoUsuario()!=1){
+            if(pass.equals(password)==false){
                 
                throw new PasswordIncorrectoException();
             }
@@ -88,18 +85,6 @@ public class UsuarioServiceImpl implements UsuarioService{
     
 }
 
-   @Override
-   public void autenticarAdmin(String password,Usuario u) throws PasswordIncorrectoException{
-       
-       password=md5Password(password);
-            String pass=u.getPassword();
-            if((pass.equals(password)==false)||u.getTipoUsuario()==1){
-                
-               throw new PasswordIncorrectoException();
-            }
-       
-   }
-   
    @Override
    public String generarPassword(){
        

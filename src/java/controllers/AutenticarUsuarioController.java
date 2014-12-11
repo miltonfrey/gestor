@@ -34,15 +34,26 @@ public class AutenticarUsuarioController implements Serializable{
     
     private String login;
     private String password;  
-    
+    private Usuario user;
    
 
     @PostConstruct
     public void init(){
-        
+      
+       HttpSession session=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        if(session.getAttribute("admin")!=null){
+            user=(Usuario)session.getAttribute("admin");
+        }
         
     }
-    
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
     
     
     public String getLogin() {
@@ -81,11 +92,18 @@ public class AutenticarUsuarioController implements Serializable{
                beanUtilidades.creaMensaje("password incorrecto", FacesMessage.SEVERITY_ERROR);
                return null;
             }
+                
+                if(u.getTipoUsuario()==1){          
             
                 HttpSession session=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
                 session.setAttribute("user", u);
                 return "usuario/index.xhtml?faces-redirect=true";
-            
+                }
+                else{
+                    HttpSession session=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+                    session.setAttribute("admin", u);
+                    return "admin/index.xhtml?faces-redirect=true";
+                }
         }
     
     
