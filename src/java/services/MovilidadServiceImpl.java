@@ -27,10 +27,18 @@ public class MovilidadServiceImpl implements MovilidadService{
      @Override
     public List<Movilidad> listarTodasMovilidades(){
         
-       List<Movilidad> aux=movilidadDao.listarMovilidad();
-       // for(Movilidad m:aux){
-          //  Hibernate.initialize(m.getUniversidad());
-        //}
+      List<Movilidad> aux= movilidadDao.findAll();
+      for(Movilidad m:aux){
+            
+            
+            if(m.getFechaFin().compareTo(new Date())==-1){
+                m.setEstado("terminada");
+                movilidadDao.edit(m, m.getCodMovilidad());
+                
+            }
+            
+            
+        }
         return aux;
         
     }
@@ -63,7 +71,7 @@ public class MovilidadServiceImpl implements MovilidadService{
     @Override
     public void crearMovilidad(Movilidad m){
         
-        movilidadDao.crearMovilidad(m);
+        movilidadDao.create(m);
     }
     
     @Override
@@ -75,7 +83,7 @@ public class MovilidadServiceImpl implements MovilidadService{
             
             if(m.getFechaFin().compareTo(new Date())==-1){
                 m.setEstado("terminada");
-                crearMovilidad(m);
+                movilidadDao.edit(m, m.getCodMovilidad());
                 
             }
             
@@ -90,30 +98,15 @@ public class MovilidadServiceImpl implements MovilidadService{
     @Override
     public void eliminarMovilidad(Movilidad m){
         
-        movilidadDao.eliminarMovilidad(m);
+        movilidadDao.remove(m);
     }
     
-    @Override
-    public List<Object> doJoin(){
-        
-        return movilidadDao.doJoin();
-        
-    }
-    
-    
-    @Override
-    public List<Movilidad> listarMovilidadesValidas(String user){
-        
-        return movilidadDao.listarMovilidadesValidas(user);
-        
-        
-    }
     
     @Override
     public Movilidad findMovilidad(Integer id){
         
         Movilidad m=movilidadDao.findMovilidad(id);
-        //Hibernate.initialize(m.getUniversidad());
+        
         return m;
     }
     
@@ -210,7 +203,7 @@ public class MovilidadServiceImpl implements MovilidadService{
         
         //m=findMovilidad(m.getCodMovilidad());
         m.setEstado(estado);
-        movilidadDao.cambiarMovilidad(m);
+        movilidadDao.edit(m, m.getCodMovilidad());
         
     }
     

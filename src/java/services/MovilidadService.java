@@ -21,8 +21,6 @@ public interface MovilidadService {
     public List<Movilidad> listarMisMovilidades(String user);
     public List<Movilidad> listarMisMovilidadesPorEstado(String user,String estado);
     public void eliminarMovilidad(Movilidad m);
-    public List<Object> doJoin();
-    public List<Movilidad> listarMovilidadesValidas(String usuario);
     public Movilidad findMovilidad(Integer id);
     public void crearMovilidad(Date fechaInicio,Date fechaFin,Usuario user,Universidad u,Cursoacademico ca) throws DuracionException,NumeroDeMovilidadesException;
      public void cambiarMovilidad(Movilidad m,String estado);

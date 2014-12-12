@@ -29,7 +29,7 @@ public class MensajeServiceImpl implements MensajeService{
     
     @Override
     public void enviarMensaje(Mensaje m){
-        mensajeDao.crearMensaje(m);
+        mensajeDao.create(m);
         
     }
     @Override
@@ -61,7 +61,7 @@ public class MensajeServiceImpl implements MensajeService{
              
                 if(aux.getEliminadoOrigen().equals("si")){
                     
-                    mensajeDao.eliminarMensaje(aux);
+                    mensajeDao.remove(aux);
                 }else{
                     
                      enviarMensaje(aux);
@@ -73,7 +73,7 @@ public class MensajeServiceImpl implements MensajeService{
              
                 if(aux.getEliminadoDestino().equals("si")){
                     
-                    mensajeDao.eliminarMensaje(aux);
+                    mensajeDao.remove(aux);
                 }else{
                     
                      enviarMensaje(aux);

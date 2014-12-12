@@ -159,8 +159,12 @@ public class MensajesRecibidosAdminController implements Serializable{
         temaRecibido=selectedMensajeRecibido.getTema();
         textAreaRecibido=selectedMensajeRecibido.getTexto();
         selectedMensajeRecibido.setLeidoDestino("si");
+        try{
         mensajeService.leerMensajeRecibido(selectedMensajeRecibido);
-        //actualizarRecibidos();
+        }catch(RuntimeException ex){
+            
+        }
+        actualizarRecibidos();
          return null;
      }
      
@@ -186,8 +190,11 @@ public class MensajesRecibidosAdminController implements Serializable{
         
         for(Mensaje m:selectedMensajesRecibidos){
          
+            try{
             mensajeService.eliminarMensaje(m,"recibido");
-           
+            }catch(RuntimeException ex){
+                
+            }
             
         actualizarRecibidos();
         

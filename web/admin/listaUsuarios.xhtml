@@ -64,7 +64,7 @@
                
                          <f:facet name="footer">
                              <p:commandButton onclick="if (! confirm('¿seguro que quieres borrar?')) return false" update=":formTabla:" icon="ui-icon-search" value="Eliminar" action="#{eliminarUsuarioController.eliminaUsuariosLista}" 
-                                              oncomplete="PF('usTable').filter()" rendered="#{autenticarAdminController.user.tipoUsuario eq 0}" />
+                                              oncomplete="PF('usTable').filter()" rendered="#{autenticarUsuarioController.user.tipoUsuario eq 0}" />
                          </f:facet>
                 
             </p:dataTable>

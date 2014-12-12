@@ -1,23 +1,31 @@
-
 package dao;
 
 import entities.Usuario;
-import java.util.List;
+import java.io.Serializable;
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 
+@Named("daoImpl")
+@RequestScoped
+public class UsuarioDao extends GenericDao<Usuario> implements Serializable{
 
-public interface UsuarioDao {
+    
+@PersistenceContext(unitName = "gestorPU")
+    private EntityManager em;
 
-    public Usuario find(String name);
-    public void delete(Usuario u);
-    public List<Usuario> listar();
-    public void insertarUsuario(Usuario u);
-    public void actualizar(Usuario u);
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+    
+    
+    public UsuarioDao() {
+        
+        setClase(Usuario.class);
+    }
+    
    
-    
-        
-        
-    
 }
-
-

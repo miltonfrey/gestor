@@ -36,7 +36,7 @@ public class UniversidadServiceImpl implements UniversidadService,Serializable{
     @Override
     public List<Universidad> listaUniversidades(){
         
-        return universidadDao.listaUniversidades();
+        return universidadDao.findAll();
     }
     
     @Override
@@ -61,8 +61,6 @@ public class UniversidadServiceImpl implements UniversidadService,Serializable{
     @Override
     public void deletePais(Pais p){
         
-        
-        
         universidadDao.deletePais(p);
     }
     
@@ -71,14 +69,12 @@ public class UniversidadServiceImpl implements UniversidadService,Serializable{
     @Override
     public List<Universidad> listar(){
         
-        return(universidadDao.listarUniversidades());
+        return(universidadDao.findAll());
     }
     
     @Override
     public void delete(Universidad u){
-        
        
-        
         universidadDao.delete(u);
         
     }
@@ -89,21 +85,15 @@ public class UniversidadServiceImpl implements UniversidadService,Serializable{
     @Override
     public void insertarUniversidad(Universidad u){
         
-     universidadDao.insertarCarrera(u);
+     universidadDao.create(u);
         
         
     }
     @Override
     public void actualizar(Universidad u){
         
-        universidadDao.actualizar(u);
+        universidadDao.edit(u, u.getNombre());
         
-    }
-    
-    @Override
-    public List<Universidad>listarPorUniversidad(String universidad){
-        
-        return universidadDao.listarPorUniversidad(universidad);
     }
     
     @Override

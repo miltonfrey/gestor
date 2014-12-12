@@ -41,14 +41,14 @@ public class UsuarioServiceImpl implements UsuarioService{
     @Override
     public void delete(Usuario u) throws UsuarioNotFoundException{
        
-        usuarioDao.delete(u);
+        usuarioDao.remove(u);
        
     }
     
     @Override
     public List<Usuario>listar(){
         
-        List<Usuario> lista=usuarioDao.listar();
+        List<Usuario> lista=usuarioDao.findAll();
         Usuario u=usuarioDao.find("admin");
         lista.remove(u);
         return lista;
@@ -60,13 +60,13 @@ public class UsuarioServiceImpl implements UsuarioService{
         
         
             
-            usuarioDao.insertarUsuario(u);
+            usuarioDao.create(u);
 }
     @Override
     public void actualizar(Usuario u){
         
         
-        usuarioDao.actualizar(u);
+        usuarioDao.edit(u, u.getLogin());
         
         
     }
@@ -119,7 +119,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         
     
        
-        String mensaje="La contraseña es "+password+"\n Puedes cambiarla en la aplicación";
+        String mensaje="La contraseña es "+password+"\n Puedes cambiarla en la aplicación\n se te pedirá esta constraseña para hacerlo";
         Email email = new SimpleEmail();
         email.setHostName("smtp.googlemail.com");
         //email.setHostName("smtp.gmail.com");

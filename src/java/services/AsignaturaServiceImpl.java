@@ -29,12 +29,12 @@ public class AsignaturaServiceImpl implements AsignaturaService{
         
         
         
-        asignaturaDao.crearAsignatura(a);
+        asignaturaDao.create(a);
     }
     
     @Override
     public List<Asignatura> listarAsignaturas(){
-        return asignaturaDao.listarAsignaturas();
+        return asignaturaDao.findAll();
     }
     
     
@@ -50,7 +50,7 @@ public class AsignaturaServiceImpl implements AsignaturaService{
     public void eliminaAsignatura(Asignatura a){
         
         
-        asignaturaDao.eliminaAsignatura(a);
+        asignaturaDao.remove(a);
         
     }
     
@@ -59,7 +59,7 @@ public class AsignaturaServiceImpl implements AsignaturaService{
     public void actualizarAsignatura(Asignatura a){
         
         
-        asignaturaDao.actualizarAsignatura(a);
+        asignaturaDao.edit(a, a.getAsignaturaPK());
        
     }
     

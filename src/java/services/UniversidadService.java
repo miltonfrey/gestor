@@ -23,7 +23,7 @@ public interface UniversidadService {
     
     public void insertarUniversidad(Universidad u);
     public void actualizar(Universidad u);
-    public List<Universidad> listarPorUniversidad(String universidad);
+    
     public List<Universidad> listarPorPais(String pais);
     public void crearCursoAcademico(Cursoacademico cursoAcademico);
     public void eliminarCursoAcademico(String c);

@@ -166,7 +166,11 @@ public class MensajesEnviadosAdminController implements Serializable{
         
         for(Mensaje m:selectedMensajesEnviados){
             
+            try{
             mensajeService.eliminarMensaje(m,"enviado");
+            }catch(RuntimeException ex){
+                
+            }
         }
      
         //beanUtilidades.creaMensaje("mensajes eliminados correctamente", FacesMessage.SEVERITY_INFO);

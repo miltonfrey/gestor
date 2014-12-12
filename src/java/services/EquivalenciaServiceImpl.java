@@ -1,6 +1,7 @@
 
 package services;
 
+import dao.ContratoDao;
 import dao.EquivalenciaDao;
 import entities.Asignatura;
 import entities.Contrato;
@@ -33,6 +34,8 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
     @Inject
     private EquivalenciaDao equivalenciaDao;
     
+    @Inject ContratoDao contratoDao;
+    
     @Override
    public Equivalencia find(Integer id) throws EquivalenciaException{
        
@@ -46,7 +49,7 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
     @Override
     public void crearEquivalencia(Equivalencia e){
         
-        equivalenciaDao.insertarEquivalencia(e);
+        equivalenciaDao.create(e);
     }
     
     @Override
@@ -54,13 +57,13 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
         
         
         
-        equivalenciaDao.eliminarEquivalencia(e);
+        equivalenciaDao.remove(e);
         
     }
     @Override
     public void actualizarEquivalencia(Equivalencia e){
         
-        equivalenciaDao.actualizarEquivalencia(e);
+        equivalenciaDao.edit(e, e.getIdequivalencia());
         
     }
     
@@ -68,17 +71,12 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
     
     public List<Equivalencia> listarEquivalencias(){
         
-        return equivalenciaDao.listarEquivalencias();
+        return equivalenciaDao.findAll();
     }
-    
-    
-    
-    
- 
     
     @Override
     public void creaContrato(Contrato c){
-        equivalenciaDao.creaContrato(c);
+        contratoDao.create(c);
         
     }
     
@@ -86,53 +84,27 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
     public void modificaContrato(Contrato c){
         
         
-        equivalenciaDao.modificaContrato(c);
+        contratoDao.edit(c, c.getIdContrato());
     }
     @Override
     
     public List<Contrato> listaContratos(Movilidad m){
-        return equivalenciaDao.listaContratos(m);
+        return contratoDao.listaContratos(m);
     }
     @Override
     public void eliminaContrato(Contrato c){
         
        
-        equivalenciaDao.eliminaContrato(c);
+       contratoDao.remove(c);
        
     }
-    /*@Override
     
-    public List<Equivalencia> listarEquivalenciasPorContrato(Integer id){
-        List<Equivalencia> listaEquivalenciasPorcontrato=equivalenciaDao.listarEquivalenciasPorContrato(id);
-        
-        for(Equivalencia e:listaEquivalenciasPorcontrato){ 
-            
-        Hibernate.initialize(e.getGrupoAsignaturaB().getMiembroGrupoAsignaturaBs());
-        Iterator i=e.getGrupoAsignaturaB().getMiembroGrupoAsignaturaBs().iterator();
-        while(i.hasNext()){
-            MiembroGrupoAsignaturaB m=(MiembroGrupoAsignaturaB)i.next();
-            Hibernate.initialize(m.getAsignatura());
-        }
-        Hibernate.initialize(e.getGrupoAsignaturaA().getMiembroGrupoAsignaturaAs());
-        Iterator j=e.getGrupoAsignaturaA().getMiembroGrupoAsignaturaAs().iterator();
-        while(j.hasNext()){
-            MiembroGrupoAsignaturaA m=(MiembroGrupoAsignaturaA)j.next();
-            Hibernate.initialize(m.getAsignatura());
-        }
-        
-        
-        
-        
-        }
-        return listaEquivalenciasPorcontrato;
-        
-    }*/
     
     
     @Override
     public Contrato findContrato(Integer id) throws ContratoNotFoundException{
         
-        Contrato c=equivalenciaDao.findContrato(id);
+        Contrato c=contratoDao.findContrato(id);
         if (c==null)
                 throw new ContratoNotFoundException();
         
@@ -154,9 +126,6 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
         }
         
         
-       
-        
-    
            
 }
         
@@ -186,13 +155,6 @@ public class EquivalenciaServiceImpl implements EquivalenciaService{
         }
         return listaEquivalencias;
     }
-    
-    @Override
-    public List<Object[]> listaObject(){
-        
-        return equivalenciaDao.listaObject();
-    }
-    
     
     @Override
     public int[] totalCreditos(ArrayList<Equivalencia> lista){

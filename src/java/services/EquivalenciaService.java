@@ -33,7 +33,6 @@ public interface EquivalenciaService {
     public void eliminaContrato(Contrato c);  
     public Contrato findContrato(Integer id) throws ContratoNotFoundException;
    public List<Equivalencia> equivalenciasPublicas(String universidad);
-   public List<Object[]> listaObject();
    public int[] totalCreditos(ArrayList<Equivalencia> lista);
    public void confirmarContrato(ArrayList<Equivalencia> lista,Contrato c)throws ContratoNotFoundException;
    public ArrayList<Equivalencia> editarContrato(ArrayList<Equivalencia>listaAuxEquivalencias,Contrato c) throws ContratoNotFoundException;
