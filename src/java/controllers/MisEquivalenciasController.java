@@ -27,6 +27,7 @@ import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -133,7 +134,8 @@ public class MisEquivalenciasController implements Serializable{
         c=equivalenciaService.findContrato(selectedContrato.getIdContrato());
         }catch(ContratoNotFoundException|EJBException ex){
              try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
+                
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
             }catch(IOException ex2){
                     
                     }
@@ -159,7 +161,7 @@ public class MisEquivalenciasController implements Serializable{
         
         else{
              try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/misMovilidades.xhtml");
             }catch(IOException ex){
                     
                     }
@@ -435,7 +437,7 @@ public class MisEquivalenciasController implements Serializable{
         }catch(ContratoNotFoundException|EJBException ex){
          
              try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
             }catch(IOException ex2){
                     
                     }
@@ -477,7 +479,7 @@ public class MisEquivalenciasController implements Serializable{
         }catch(ContratoNotFoundException|EJBException ex){
          
              try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
             }catch(IOException ex2){
                     
                     }
@@ -534,7 +536,7 @@ public class MisEquivalenciasController implements Serializable{
         }catch(ContratoNotFoundException|EquivalenciaException|EJBException ex){
          
              try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/verMisMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
             }catch(IOException ex2){
                     
                     }

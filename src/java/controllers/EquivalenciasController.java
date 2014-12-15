@@ -104,7 +104,7 @@ public class EquivalenciasController implements Serializable{
            selectedContrato=equivalenciaService.findContrato(selectedContrato.getIdContrato());
            }catch(ContratoNotFoundException|EJBException ex){
                try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/error.xhtml");
             }catch(IOException ex2){
                     
                     }
@@ -121,7 +121,7 @@ public class EquivalenciasController implements Serializable{
         contratoComparado=equivalenciaService.findContrato(contratoComparado.getIdContrato());
              }catch(ContratoNotFoundException ex3){
                  try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/error.xhtml");
             }catch(IOException ex4){
                     
                     }
@@ -290,7 +290,7 @@ public class EquivalenciasController implements Serializable{
                 equivalenciaService.actualizarEquivalencia(e.getEquivalencia());
             }catch(EJBException ex){
                 try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/error.xhtml");
             }catch(IOException ex2){
                     
                     }
@@ -322,7 +322,7 @@ public class EquivalenciasController implements Serializable{
                 equivalenciaService.actualizarEquivalencia(e);
             }catch(EJBException ex){
                  try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/error.xhtml");
             }catch(IOException ex2){
                     
                     }
@@ -350,7 +350,7 @@ public class EquivalenciasController implements Serializable{
                 equivalenciaService.actualizarEquivalencia(e.getEquivalencia());
             }catch(EJBException ex){
                  try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/error.xhtml");
             }catch(IOException ex2){
                     
                     }
@@ -377,7 +377,7 @@ public class EquivalenciasController implements Serializable{
                 equivalenciaService.actualizarEquivalencia(e);
             }catch(EJBException ex){
                  try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/error.xhtml");
             }catch(IOException ex2){
                     
                     }
@@ -407,7 +407,7 @@ public class EquivalenciasController implements Serializable{
             equivalenciaService.modificaContrato(selectedContrato);
             }catch(EJBException ex){
                 try{
-            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/verMovilidades.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/error.xhtml");
             }catch(IOException ex2){
                     
                     }
