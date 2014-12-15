@@ -142,11 +142,16 @@ public class VerMisContratosController implements Serializable{
            try{
               
            selectedContrato=equivalenciaService.findContrato(selectedContrato.getIdContrato());
-            listaCopia=new ArrayList<>(selectedContrato.getEquivalenciaSet());
+            listaCopia=new ArrayList<Equivalencia>(selectedContrato.getEquivalenciaSet());
              selectedContrato.setEquivalenciaSet(null);
            //equivalenciaService.modificaContrato(selectedContrato);
            equivalenciaService.eliminaContrato(selectedContrato);
-           }catch(ContratoNotFoundException|EJBException ex){
+           }catch(ContratoNotFoundException ex){
+               beanUtilidades.creaMensaje("contrato no encontrado", FacesMessage.SEVERITY_ERROR);
+               cerrarContratos();
+               return null;
+           }catch(EJBException ex2){
+               
                beanUtilidades.creaMensaje("contrato no encontrado", FacesMessage.SEVERITY_ERROR);
                cerrarContratos();
                return null;

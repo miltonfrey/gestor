@@ -164,7 +164,7 @@ public class CrearUsuarioController implements Serializable{
             usuarioService.enviarEmail(login,password);
             
         }catch(EmailException ex){
-            ex.printStackTrace();
+            
             beanUtilidades.creaMensaje("se ha producido un error", FacesMessage.SEVERITY_ERROR);
             return null;
         }
@@ -173,7 +173,7 @@ public class CrearUsuarioController implements Serializable{
         beanUtilidades.creaMensaje("usuario creado. Se ha enviado un correo a la cuenta "+login+"@udc.es con la contraseña", FacesMessage.SEVERITY_INFO);
         
         
-        Usuario destino=null;
+        Usuario destino;
         try{
             
             destino=usuarioService.find("admin");
@@ -191,10 +191,14 @@ public class CrearUsuarioController implements Serializable{
         m.setTema("usuario creado");
         m.setTexto("el usuario "+login+" se ha dado de alta en el sistema");
         mensajeService.enviarMensaje(m);
-        }catch(UsuarioNotFoundException|RuntimeException ex){
+        }catch(UsuarioNotFoundException ex){
             
             beanUtilidades.creaMensaje("se ha producido un error. Inténtalo más tarde", FacesMessage.SEVERITY_ERROR);
                 return null;
+        }catch(RuntimeException ex2){
+            beanUtilidades.creaMensaje("se ha producido un error. Inténtalo más tarde", FacesMessage.SEVERITY_ERROR);
+                return null;
+            
         }
         
         login="";

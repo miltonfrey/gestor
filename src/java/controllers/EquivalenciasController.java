@@ -91,12 +91,19 @@ public class EquivalenciasController implements Serializable{
            context.getSessionMap().remove("movilidad");
            try{
            selectedContrato=equivalenciaService.findContrato(selectedContrato.getIdContrato());
-           }catch(ContratoNotFoundException|EJBException ex){
+           }catch(ContratoNotFoundException ex){
                try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/error.xhtml");
             }catch(IOException ex2){
                     
                     }
+           }catch(EJBException ex3){
+              try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/admin/error.xhtml");
+            }catch(IOException ex4){
+                    
+                    } 
+               
            }
            
            listaAuxEquivalencias.addAll(selectedContrato.getEquivalenciaSet());

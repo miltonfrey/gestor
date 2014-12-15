@@ -128,13 +128,21 @@ public class MisEquivalenciasController implements Serializable{
         context.getSessionMap().remove("contrato");
         try{
         c=equivalenciaService.findContrato(selectedContrato.getIdContrato());
-        }catch(ContratoNotFoundException|EJBException ex){
+        }catch(ContratoNotFoundException ex){
              try{
                 
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
             }catch(IOException ex2){
                     
                     }
+        }catch(RuntimeException ex2){
+            try{
+                
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
+            }catch(IOException ex3){
+                    
+                    }
+            
         }
         listaAuxEquivalencias.addAll(c.getEquivalenciaSet());   
         listaAuxEquivalenciasComparado.addAll(c.getEquivalenciaSet()); 
@@ -430,11 +438,18 @@ public class MisEquivalenciasController implements Serializable{
         
         try{
         equivalenciaService.confirmarContrato(listaAuxEquivalencias, c);
-        }catch(ContratoNotFoundException|EJBException ex){
+        }catch(ContratoNotFoundException ex){
          
              try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
             }catch(IOException ex2){
+                    
+                    }
+        }catch(RuntimeException ex3){
+            
+            try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
+            }catch(IOException ex4){
                     
                     }
         }
@@ -472,9 +487,16 @@ public class MisEquivalenciasController implements Serializable{
         ArrayList<Equivalencia>listaCopia=null;
          try{
         listaCopia=equivalenciaService.editarContrato(listaAuxEquivalencias, c);
-        }catch(ContratoNotFoundException|EJBException ex){
+        }catch(ContratoNotFoundException ex){
          
              try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
+            }catch(IOException ex2){
+                    
+                    }
+        }catch(RuntimeException ex3){
+            
+            try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
             }catch(IOException ex2){
                     
@@ -485,7 +507,7 @@ public class MisEquivalenciasController implements Serializable{
         for(Equivalencia e:listaCopia){
             try{
                 equivalenciaService.eliminarEquivalencia(e);
-            }catch(EJBException ex){
+            }catch(EJBException e4){
                 
             }
         }
@@ -529,13 +551,29 @@ public class MisEquivalenciasController implements Serializable{
         
          try{
          equivalenciaService.crearContratoDesdeAceptado(listaAuxEquivalencias, c, cNuevo);
-        }catch(ContratoNotFoundException|EquivalenciaException|EJBException ex){
+        }catch(ContratoNotFoundException  ex){
          
              try{
             FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
             }catch(IOException ex2){
                     
                     }
+        }catch(EquivalenciaException ex3){
+             try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
+            }catch(IOException ex2){
+                    
+                    }
+            
+            
+        }catch(RuntimeException ex5){
+            
+             try{
+            FacesContext.getCurrentInstance().getExternalContext().redirect(FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/usuario/error.xhtml");
+            }catch(IOException ex6){
+                    
+                    }
+            
         }
         
         

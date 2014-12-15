@@ -219,9 +219,13 @@ public String crearMovilidad(){
                   
              
               
-              }catch(DuracionException|NumeroDeMovilidadesException ex){
+              }catch(DuracionException ex){
                   beanUtilidades.creaMensaje(ex.getMessage(),FacesMessage.SEVERITY_ERROR);
                   return null;
+              }catch(NumeroDeMovilidadesException ex2){
+                  beanUtilidades.creaMensaje(ex2.getMessage(),FacesMessage.SEVERITY_ERROR);
+                  return null;
+                  
               }
               
               
