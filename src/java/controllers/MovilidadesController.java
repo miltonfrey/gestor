@@ -23,7 +23,7 @@ import org.primefaces.event.RowEditEvent;
 
 import services.MensajeService;
 import services.MovilidadService;
-import services.UsuarioService;
+
 
 import utils.BeanUtilidades;
 
@@ -38,8 +38,6 @@ public class MovilidadesController implements Serializable{
     @EJB
     private MovilidadService movilidadService;
     
-    @EJB 
-    private UsuarioService usuarioService;
     
     @EJB 
     private MensajeService mensajeService;

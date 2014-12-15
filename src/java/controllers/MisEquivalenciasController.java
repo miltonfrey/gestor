@@ -27,7 +27,6 @@ import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -38,7 +37,6 @@ import org.primefaces.component.datatable.DataTable;
 import services.AsignaturaService;
 import services.EquivalenciaService;
 import services.MensajeService;
-import services.MovilidadService;
 import services.UsuarioService;
 
 import utils.BeanUtilidades;
@@ -52,8 +50,6 @@ public class MisEquivalenciasController implements Serializable{
     private BeanUtilidades beanUtilidades;
     @EJB
     private UsuarioService usuarioService;
-    @EJB
-    private MovilidadService movilidadService;
     @EJB
     private AsignaturaService asignaturaService;
     @EJB 

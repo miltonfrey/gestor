@@ -132,7 +132,7 @@ public class VerContratosController implements Serializable{
         if(selectedContratos.isEmpty()){
             return null;
         }
-        ArrayList<Equivalencia> listaCopia=null;
+        ArrayList<Equivalencia> listaCopia;
         
         for(Contrato c:selectedContratos){
         

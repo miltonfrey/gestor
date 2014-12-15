@@ -3,7 +3,6 @@ package controllers;
 import entities.Pais;
 import entities.Universidad;
 import exceptions.PaisException;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +10,6 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.faces.application.FacesMessage;
 import javax.inject.Named;
-
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import services.UniversidadService;

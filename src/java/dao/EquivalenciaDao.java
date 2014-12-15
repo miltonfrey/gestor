@@ -5,9 +5,8 @@
  */
 package dao;
 
-import entities.Contrato;
+
 import entities.Equivalencia;
-import entities.Movilidad;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;

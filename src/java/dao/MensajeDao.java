@@ -1,7 +1,6 @@
 package dao;
 
 import entities.Mensaje;
-import entities.Movilidad;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Named;

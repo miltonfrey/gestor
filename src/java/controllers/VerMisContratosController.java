@@ -20,7 +20,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import services.EquivalenciaService;
-import services.MovilidadService;
+
 
 import utils.BeanUtilidades;
 
@@ -31,8 +31,7 @@ public class VerMisContratosController implements Serializable{
 
    @Inject 
    private BeanUtilidades beanUtilidades;
-   @EJB
-   private MovilidadService movilidadService;
+   
    @EJB
    private EquivalenciaService equivalenciaService;
    
@@ -138,7 +137,7 @@ public class VerMisContratosController implements Serializable{
     
     public String eliminarContrato(){
         
-        ArrayList<Equivalencia> listaCopia=null;
+        ArrayList<Equivalencia> listaCopia;
         
            try{
               
@@ -245,7 +244,7 @@ public class VerMisContratosController implements Serializable{
         FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("contrato", selectedContrato);
        
         
-        return ("elaborarContratoEditadoB.xhtml?faces-redirect=true");
+        return ("elaborarContratoEditado.xhtml?faces-redirect=true");
         
     }
     

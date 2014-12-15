@@ -21,13 +21,8 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-
-import services.AsignaturaService;
 import services.EquivalenciaService;
 import services.MensajeService;
-import services.MovilidadService;
-import services.UsuarioService;
-
 import utils.BeanUtilidades;
 import utils.EquivalenciaRevisada;
 
@@ -38,12 +33,6 @@ public class EquivalenciasController implements Serializable{
 
     @Inject 
     private BeanUtilidades beanUtilidades;
-    @EJB
-    private UsuarioService usuarioService;
-    @EJB
-    private MovilidadService movilidadService;
-    @EJB
-    private AsignaturaService asignaturaService;
     @EJB
     private EquivalenciaService equivalenciaService;
     @EJB

@@ -11,20 +11,14 @@ import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-
 import services.MensajeService;
 
-import utils.BeanUtilidades;
 
 
 @Named(value = "mensajesEnviadosAdminController")
 @ViewScoped
 public class MensajesEnviadosAdminController implements Serializable{
-
-    @Inject 
-    private BeanUtilidades beanUtilidades;
     
     @EJB
     private MensajeService mensajeService;

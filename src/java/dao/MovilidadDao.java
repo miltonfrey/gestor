@@ -2,9 +2,7 @@
 package dao;
 
 import entities.Movilidad;
-import entities.Usuario;
 import java.util.List;
-
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
